@@ -6,7 +6,8 @@ import QuickView from './components/QuickView';
 import OrgChart from './components/OrgChart';
 import PersonalInfo from './components/PersonalInfo';
 
-const API_BASE_URL = process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5001/api';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 
+  (import.meta.env.DEV ? 'http://localhost:5001/api' : 'https://hr-portal-backend.onrender.com/api');
 
 function App() {
   const [employee, setEmployee] = useState(null);
