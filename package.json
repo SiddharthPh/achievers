@@ -1,0 +1,20 @@
+{
+  "name": "hr-profile-portal",
+  "version": "1.0.0",
+  "description": "A full-stack HR profile portal similar to iHawk or Workday",
+  "scripts": {
+    "setup": "./setup.sh",
+    "dev": "./dev-start.sh",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && source venv/bin/activate && python app.py",
+    "build": "cd frontend && npm run build",
+    "install:all": "cd backend && pip install -r requirements.txt && cd ../frontend && npm install"
+  },
+  "keywords": ["hr", "profile", "portal", "react", "flask", "workday"],
+  "author": "Your Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/hr-profile-portal.git"
+  }
+}
