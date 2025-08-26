@@ -72,7 +72,6 @@ class handler(BaseHTTPRequestHandler):
         }
         
         self.wfile.write(json.dumps(employee_data).encode())
-        return
 
     def do_OPTIONS(self):
         self.send_response(200)
@@ -80,4 +79,3 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
         self.send_header('Access-Control-Allow-Headers', 'Content-Type')
         self.end_headers()
-        return

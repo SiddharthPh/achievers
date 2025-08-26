@@ -1,5 +1,6 @@
 from http.server import BaseHTTPRequestHandler
 import json
+from datetime import datetime
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -13,11 +14,10 @@ class handler(BaseHTTPRequestHandler):
         response = {
             "status": "healthy",
             "service": "HR Portal API",
-            "timestamp": "2025-08-26T19:00:00Z"
+            "timestamp": datetime.utcnow().isoformat() + "Z"
         }
         
         self.wfile.write(json.dumps(response).encode())
-        return
 
     def do_OPTIONS(self):
         self.send_response(200)
@@ -25,4 +25,3 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
         self.send_header('Access-Control-Allow-Headers', 'Content-Type')
         self.end_headers()
-        return

@@ -1,0 +1,43 @@
+{
+  "version": 2,
+  "name": "hr-profile-portal",
+  "builds": [
+    {
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/health",
+      "dest": "/api/health.py"
+    },
+    {
+      "src": "/api/employee-profile",
+      "dest": "/api/employee-profile.py"
+    },
+    {
+      "src": "/",
+      "dest": "/frontend/dist/index.html"
+    },
+    {
+      "src": "/assets/(.*)",
+      "dest": "/frontend/dist/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/dist/index.html"
+    }
+  ],
+  "functions": {
+    "api/health.py": {
+      "runtime": "python3.9"
+    },
+    "api/employee-profile.py": {
+      "runtime": "python3.9"
+    }
+  }
+}
