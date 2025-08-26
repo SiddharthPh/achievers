@@ -54,6 +54,7 @@ lerna-debug.log*
 # Build outputs
 dist/
 build/
+frontend/dist/
 
 # Logs
 logs
