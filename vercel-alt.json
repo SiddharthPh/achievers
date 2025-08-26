@@ -1,15 +1,17 @@
 {
   "version": 2,
+  "name": "hr-profile-portal",
   "builds": [
     {
       "src": "frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist"
+        "distDir": "dist",
+        "framework": null
       }
     },
     {
-      "src": "api/*.py",
+      "src": "api/**/*.py",
       "use": "@vercel/python"
     }
   ],
@@ -23,7 +25,9 @@
       "dest": "/frontend/dist/$1"
     }
   ],
-  "github": {
-    "silent": true
+  "functions": {
+    "api/**/*.py": {
+      "runtime": "python3.9"
+    }
   }
 }
