@@ -6,7 +6,7 @@ import QuickView from './components/QuickView';
 import OrgChart from './components/OrgChart';
 import PersonalInfo from './components/PersonalInfo';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'http://localhost:5001/api';
 
 function App() {
   const [employee, setEmployee] = useState(null);

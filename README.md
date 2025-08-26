@@ -37,7 +37,7 @@ pip install -r requirements.txt
 python app.py
 ```
 
-The backend will start on `http://localhost:5000`
+The backend will start on `http://localhost:5001`
 
 ### Frontend Setup
 

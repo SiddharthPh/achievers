@@ -37,7 +37,7 @@ cd ..
 
 echo ""
 echo "✅ Both servers are starting up!"
-echo "   📡 Backend: http://localhost:5000"
+echo "   📡 Backend: http://localhost:5001"
 echo "   🌐 Frontend: http://localhost:5173"
 echo ""
 echo "Press Ctrl+C to stop both servers"
