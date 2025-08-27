@@ -5,9 +5,7 @@ import TabNavigation from './components/TabNavigation';
 import QuickView from './components/QuickView';
 import OrgChart from './components/OrgChart';
 import PersonalInfo from './components/PersonalInfo';
-
-const API_BASE_URL = import.meta.env.VITE_API_URL || 
-  (import.meta.env.DEV ? 'http://localhost:5001/api' : 'https://hr-portal-backend.onrender.com/api');
+import { mockEmployeeData } from './data/mockData';
 
 function App() {
   const [employee, setEmployee] = useState(null);
@@ -16,24 +14,14 @@ function App() {
   const [activeTab, setActiveTab] = useState('quick-view');
 
   useEffect(() => {
-    fetchEmployeeProfile();
-  }, []);
-
-  const fetchEmployeeProfile = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch(`${API_BASE_URL}/employee-profile`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch employee profile');
-      }
-      const data = await response.json();
-      setEmployee(data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
+    // Simulate API loading delay
+    const timer = setTimeout(() => {
+      setEmployee(mockEmployeeData);
       setLoading(false);
-    }
-  };
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const renderTabContent = () => {
     if (!employee) return null;

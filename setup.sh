@@ -1,13 +1,7 @@
 #!/bin/bash
 
-# HR Profile Portal Setup Script
-echo "🚀 Setting up HR Profile Portal..."
-
-# Check if Python is installed
-if ! command -v python3 &> /dev/null; then
-    echo "❌ Python 3 is required but not installed. Please install Python 3.13+ and try again."
-    exit 1
-fi
+# HR Profile Portal Setup Script (Frontend Only)
+echo "🚀 Setting up HR Profile Portal Frontend..."
 
 # Check if Node.js is installed
 if ! command -v node &> /dev/null; then
@@ -15,26 +9,43 @@ if ! command -v node &> /dev/null; then
     exit 1
 fi
 
-echo "✅ Python and Node.js found"
+echo "✅ Node.js found"
 
-# Setup backend
-echo "📦 Setting up backend dependencies..."
-cd backend
-if [ -f "requirements.txt" ]; then
-    echo "🐍 Creating Python virtual environment..."
-    python3 -m venv venv
-    source venv/bin/activate
-    pip install -r requirements.txt
+# Setup frontend
+echo "📦 Setting up frontend dependencies..."
+cd frontend
+if [ -f "package.json" ]; then
+    npm install
     if [ $? -eq 0 ]; then
-        echo "✅ Backend dependencies installed successfully"
+        echo "✅ Frontend dependencies installed successfully"
     else
-        echo "❌ Failed to install backend dependencies"
+        echo "❌ Failed to install frontend dependencies"
         exit 1
     fi
 else
-    echo "❌ requirements.txt not found in backend directory"
+    echo "❌ package.json not found in frontend directory"
     exit 1
 fi
+
+# Build the project to verify everything works
+echo "🔨 Building project to verify setup..."
+npm run build
+if [ $? -eq 0 ]; then
+    echo "✅ Build successful"
+else
+    echo "❌ Build failed"
+    exit 1
+fi
+
+echo ""
+echo "🎉 Setup complete! Frontend-only HR Portal is ready."
+echo ""
+echo "📝 Next steps:"
+echo "1. Run './dev-start.sh' to start the development server"
+echo "2. Open http://localhost:5173 in your browser"
+echo "3. Deploy to Vercel when ready!"
+echo ""
+echo "📖 For deployment instructions, see VERCEL_DEPLOYMENT.md"
 
 # Setup frontend
 echo "📦 Setting up frontend dependencies..."
