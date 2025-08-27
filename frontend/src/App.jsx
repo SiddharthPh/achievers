@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
-import ProfileCard from './components/ProfileCard';
-import TabNavigation from './components/TabNavigation';
-import QuickView from './components/QuickView';
-import OrgChart from './components/OrgChart';
-import PersonalInfo from './components/PersonalInfo';
+import Dashboard from './components/Dashboard';
+import Rewards from './components/Rewards';
+import Team from './components/Team';
+import Directory from './components/Directory';
 import { mockEmployeeData } from './data/mockData';
 
 function App() {
   const [employee, setEmployee] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [activeView, setActiveView] = useState('dashboard');
   const [activeTab, setActiveTab] = useState('quick-view');
 
   useEffect(() => {
@@ -23,18 +23,30 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  const renderTabContent = () => {
-    if (!employee) return null;
-
-    switch (activeTab) {
-      case 'quick-view':
-        return <QuickView employee={employee} />;
-      case 'org-chart':
-        return <OrgChart employee={employee} />;
-      case 'personal-info':
-        return <PersonalInfo employee={employee} />;
+  const renderMainContent = () => {
+    switch (activeView) {
+      case 'dashboard':
+        return (
+          <Dashboard 
+            employee={employee} 
+            activeTab={activeTab} 
+            onTabChange={setActiveTab} 
+          />
+        );
+      case 'rewards':
+        return <Rewards />;
+      case 'team':
+        return <Team />;
+      case 'directory':
+        return <Directory />;
       default:
-        return <QuickView employee={employee} />;
+        return (
+          <Dashboard 
+            employee={employee} 
+            activeTab={activeTab} 
+            onTabChange={setActiveTab} 
+          />
+        );
     }
   };
 
@@ -70,25 +82,10 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <Header activeView={activeView} onViewChange={setActiveView} />
       
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Column - Profile Card */}
-          <div className="lg:col-span-1">
-            <ProfileCard employee={employee} />
-          </div>
-
-          {/* Right Column - Main Content */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200">
-              <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
-              <div className="p-6">
-                {renderTabContent()}
-              </div>
-            </div>
-          </div>
-        </div>
+        {renderMainContent()}
       </main>
     </div>
   );
