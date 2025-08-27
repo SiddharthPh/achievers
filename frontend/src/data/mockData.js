@@ -56,6 +56,42 @@ export const mockEmployeeData = {
     workLocation: "Hybrid"
   },
 
+  // Organizational Chart Structure
+  orgChart: {
+    hierarchy: [
+      {
+        name: "Jennifer Liu",
+        title: "VP of Engineering",
+        level: 0,
+        current: false
+      },
+      {
+        name: "Mike Chen",
+        title: "Engineering Manager",
+        level: 1,
+        current: false
+      },
+      {
+        name: "Sarah Johnson",
+        title: "Senior Software Engineer",
+        level: 2,
+        current: true
+      },
+      {
+        name: "Alex Rodriguez",
+        title: "Software Engineer", 
+        level: 3,
+        current: false
+      },
+      {
+        name: "Emily Zhang",
+        title: "Junior Software Engineer",
+        level: 3,
+        current: false
+      }
+    ]
+  },
+
   // Employment Details
   employment: {
     employmentType: "Full-time",
